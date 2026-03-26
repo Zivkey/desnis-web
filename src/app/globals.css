@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --onyx: #0D0B09;
+  --cream: #F0E6D2;
+  --sand: #C8B8A2;
+  --stone: #8C7A68;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
+}
+
+body {
+  background: var(--onyx);
+  color: var(--cream);
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: auto;
+}
+
+/* Scrollbar - hidden */
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Selection */
+::selection {
+  background: var(--cream);
+  color: var(--onyx);
+}
+
+/* Chapter backgrounds - light to dark */
+.chapter-bg {
+  transition: background 1.2s ease;
+}
+
+.chapter-bg-0 {
+  background: radial-gradient(ellipse at center, #1a1710 0%, #0D0B09 70%);
+}
+
+.chapter-bg-1 {
+  background: radial-gradient(ellipse at center, #041a08 0%, #020d02 40%, #0D0B09 80%);
+}
+
+.chapter-bg-2 {
+  background: radial-gradient(ellipse at center, #1a1710 0%, #141008 40%, #0D0B09 80%);
+}
+
+.chapter-bg-3 {
+  background: radial-gradient(ellipse at center, #1a0820 0%, #0d0515 40%, #0D0B09 80%);
+}
+
+.chapter-bg-4 {
+  background: radial-gradient(ellipse at center, #080808 0%, #050505 40%, #0D0B09 80%);
+}
+
+.chapter-bg-5 {
+  background: radial-gradient(ellipse at center, #14120f 0%, #0D0B09 70%);
+}
+
+.chapter-bg-6 {
+  background: radial-gradient(ellipse at center, #0f0d0b 0%, #0D0B09 70%);
+}
+
+/* Card hover variants */
+.card-hover-hacker:hover {
+  transform: translateY(-4px);
+  border-color: #00FF41;
+  box-shadow: 0 8px 32px rgba(0, 255, 65, 0.12);
+}
+
+.card-hover-neon:hover {
+  transform: translateY(-4px);
+  border-color: #FF2D9B;
+  box-shadow: 0 8px 32px rgba(255, 45, 155, 0.15);
+}
+
+/* Glow button */
+.btn-glow {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(240, 230, 210, 0.15), 0 0 40px rgba(240, 230, 210, 0.08);
+}
+
+/* Card hover */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: var(--cream);
+  box-shadow: 0 8px 32px rgba(240, 230, 210, 0.08);
+}
+
+/* Video fading edge mask */
+.video-mask {
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 65% at center,
+    black 20%,
+    rgba(0, 0, 0, 0.5) 45%,
+    rgba(0, 0, 0, 0.15) 65%,
+    transparent 85%
+  );
+  mask-image: radial-gradient(
+    ellipse 70% 65% at center,
+    black 20%,
+    rgba(0, 0, 0, 0.5) 45%,
+    rgba(0, 0, 0, 0.15) 65%,
+    transparent 85%
+  );
+}
