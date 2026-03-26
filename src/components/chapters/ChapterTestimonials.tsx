@@ -10,10 +10,10 @@ const testimonials = [
 ];
 
 export default function ChapterTestimonials({ progress, active }: Props) {
-  const headerStyle = useScrollElement(progress, "scale", -0.02, -0.001, 0.90, 0.99);
-  const card0 = useScrollElement(progress, "left", -0.015, -0.001, 0.90, 0.99);
-  const card1 = useScrollElement(progress, "bottom", -0.01, -0.001, 0.92, 0.99);
-  const card2 = useScrollElement(progress, "right", -0.005, -0.001, 0.93, 0.99);
+  const headerStyle = useScrollElement(progress, "scale", 0.08, 0.2, 0.93, 0.998);
+  const card0 = useScrollElement(progress, "left", 0.12, 0.25, 0.93, 0.998);
+  const card1 = useScrollElement(progress, "bottom", 0.16, 0.3, 0.95, 0.998);
+  const card2 = useScrollElement(progress, "right", 0.20, 0.35, 0.95, 0.998);
   const cards = [card0, card1, card2];
 
   return (

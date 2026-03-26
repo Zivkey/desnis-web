@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { chapters } from "@/data/chapters";
 
 const navItems = [
-  { label: "SEO", href: "#seo", chapter: 1 },
-  { label: "Dizajn", href: "#design", chapter: 2 },
-  { label: "Development", href: "#development", chapter: 3 },
-  { label: "Projekti", href: "#work", chapter: 4 },
-  { label: "Kontakt", href: "#contact", chapter: 6 },
+  { label: "SEO", chapter: 1 },
+  { label: "Dizajn", chapter: 2 },
+  { label: "Development", chapter: 3 },
+  { label: "Projekti", chapter: 4 },
+  { label: "Kontakt", chapter: 6 },
 ];
 
 export default function Navbar() {
@@ -27,15 +28,15 @@ export default function Navbar() {
     };
   }, []);
 
-  const scrollTo = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY;
-      setIsOpen(false);
-      requestAnimationFrame(() => {
-        window.scrollTo(0, top);
-      });
-    }
+  const scrollTo = (chapterId: number) => {
+    const ch = chapters.find((c) => c.id === chapterId);
+    if (!ch) return;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const target = ch.scrollRange[0] * scrollHeight;
+    setIsOpen(false);
+    requestAnimationFrame(() => {
+      window.scrollTo(0, target);
+    });
   };
 
   return (
@@ -49,7 +50,7 @@ export default function Navbar() {
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <button
-            onClick={() => scrollTo("#hero")}
+            onClick={() => scrollTo(0)}
             className="text-2xl font-bold tracking-tight text-cream"
           >
             Desnis
@@ -63,7 +64,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + i * 0.1 }}
-                onClick={() => scrollTo(item.href)}
+                onClick={() => scrollTo(item.chapter)}
                 className={`text-sm ${
                   chapter === item.chapter ? "text-cream" : "text-cream/50"
                 } hover:text-cream transition-colors duration-300`}
@@ -75,7 +76,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              onClick={() => scrollTo("#contact")}
+              onClick={() => scrollTo(6)}
               className="btn-glow text-sm px-5 py-2 border border-cream/30 rounded-xl text-cream hover:bg-cream/5 transition-colors duration-500"
             >
               Kontaktirajte nas
@@ -117,7 +118,7 @@ export default function Navbar() {
                 {navItems.map((item) => (
                   <button
                     key={item.label}
-                    onClick={() => scrollTo(item.href)}
+                    onClick={() => scrollTo(item.chapter)}
                     className={`text-sm ${
                       chapter === item.chapter ? "text-cream" : "text-cream/50"
                     } hover:text-cream transition-colors text-left`}
@@ -126,7 +127,7 @@ export default function Navbar() {
                   </button>
                 ))}
                 <button
-                  onClick={() => scrollTo("#contact")}
+                  onClick={() => scrollTo(6)}
                   className="text-sm px-4 py-2 border border-cream/30 rounded-xl text-cream hover:bg-cream/5 w-fit transition-colors duration-500"
                 >
                   Kontaktirajte nas

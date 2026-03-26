@@ -16,12 +16,8 @@ export default function ProgressBar({ containerRef, currentChapter }: Props) {
     const handler = (e: Event) => {
       const progress = (e as CustomEvent).detail as number;
       const pct = `${progress * 100}%`;
-      if (fillRef.current) {
-        fillRef.current.style.height = pct;
-      }
-      if (knobRef.current) {
-        knobRef.current.style.top = pct;
-      }
+      if (fillRef.current) fillRef.current.style.height = pct;
+      if (knobRef.current) knobRef.current.style.top = pct;
     };
     window.addEventListener("scrollProgress", handler);
     return () => window.removeEventListener("scrollProgress", handler);
@@ -36,8 +32,7 @@ export default function ProgressBar({ containerRef, currentChapter }: Props) {
           className="absolute top-0 left-0 w-full rounded-full"
           style={{
             height: "0%",
-            background:
-              "linear-gradient(to bottom, rgba(240,230,210,0.6), rgba(240,230,210,0.2))",
+            background: "linear-gradient(to bottom, rgba(240,230,210,0.6), rgba(240,230,210,0.2))",
           }}
         />
         {/* Knob */}
@@ -59,8 +54,7 @@ export default function ProgressBar({ containerRef, currentChapter }: Props) {
               key={ch.id}
               onClick={() => {
                 const scrollTarget =
-                  ch.scrollRange[0] *
-                  (containerRef.current?.scrollHeight || 0);
+                  ch.scrollRange[0] * (containerRef.current?.scrollHeight || 0);
                 window.scrollTo({ top: scrollTarget, behavior: "smooth" });
               }}
               className={`absolute right-0 -translate-y-1/2 text-[10px] uppercase tracking-wider transition-all duration-300 ${
