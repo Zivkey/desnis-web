@@ -6,10 +6,9 @@ import { chapters } from "@/data/chapters";
 
 const navItems = [
   { label: "SEO", chapter: 1 },
-  { label: "Dizajn", chapter: 2 },
+  { label: "Design", chapter: 2 },
   { label: "Development", chapter: 3 },
-  { label: "Projekti", chapter: 4 },
-  { label: "Kontakt", chapter: 6 },
+  { label: "Projects", chapter: 4 },
 ];
 
 export default function Navbar() {
@@ -45,63 +44,60 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="fixed top-0 left-0 right-0 z-50 px-6 py-4 backdrop-blur-md bg-onyx/40 border-b border-white/5"
+        className="fixed top-0 left-0 right-0 z-50 px-[6vw] pt-[3vh] pb-4"
       >
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          {/* Logo */}
-          <button
-            onClick={() => scrollTo(0)}
-            className="text-2xl font-bold tracking-tight text-cream"
-          >
-            Desnis
+        <div className="w-full grid grid-cols-[1fr_auto_1fr] items-center">
+
+          {/* Left: logo + name */}
+          <button onClick={() => scrollTo(0)} aria-label="Home" className="flex items-center gap-2.5">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" clipRule="evenodd" d="M0 0H0.582032H15.7907H16L15.9987 0.0012858C24.8639 0.110961 32.0002 7.223 32.0002 16C32.0002 24.8455 24.752 32 15.7907 32H12.1007L8.00025 24H15.7907C20.1396 24 24.0002 20.2927 24.0002 16C24.0002 11.7073 20.1396 8 15.7907 8H7.71429L0 16V0ZM0 16V32L7.85455 23.8545L16 16H0Z" fill="white"/>
+            </svg>
           </button>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-4 lg:gap-8">
+          {/* Center: pill nav (desktop) */}
+          <div className="hidden md:flex items-center justify-center">
+          <div className="flex items-center rounded-full overflow-hidden backdrop-blur-xl bg-white/10">
             {navItems.map((item, i) => (
-              <motion.button
+              <button
                 key={item.label}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + i * 0.1 }}
                 onClick={() => scrollTo(item.chapter)}
-                className={`text-sm ${
-                  chapter === item.chapter ? "text-cream" : "text-cream/50"
-                } hover:text-cream transition-colors duration-300`}
+                className={`relative text-[16px] px-9 py-4 transition-colors duration-300 ${
+                  chapter === item.chapter
+                    ? "text-white"
+                    : "text-white/50 hover:text-white"
+                }`}
               >
                 {item.label}
-              </motion.button>
+              </button>
             ))}
+          </div>
+          </div>
+
+          {/* Right: contact button + mobile hamburger */}
+          <div className="flex items-center justify-end gap-3">
             <motion.button
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
+              transition={{ delay: 0.5 }}
               onClick={() => scrollTo(6)}
-              className="btn-glow text-sm px-5 py-2 border border-cream/30 rounded-xl text-cream hover:bg-cream/5 transition-colors duration-500"
+              className="hidden md:inline-flex items-center gap-[6px] text-[16px] font-normal tracking-[-0.02em] bg-white text-black px-10 py-4 rounded-full hover:bg-white/90 transition-colors duration-300"
             >
-              Kontaktirajte nas
+              Contact us
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
             </motion.button>
-          </div>
 
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2"
-            aria-label="Toggle menu"
-          >
-            <motion.span
-              animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-cream"
-            />
-            <motion.span
-              animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="block w-6 h-0.5 bg-cream"
-            />
-            <motion.span
-              animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-cream"
-            />
-          </button>
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden flex flex-col gap-1.5 p-2"
+              aria-label="Toggle menu"
+            >
+              <motion.span animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }} className="block w-6 h-0.5 bg-white" />
+              <motion.span animate={isOpen ? { opacity: 0 } : { opacity: 1 }} className="block w-6 h-0.5 bg-white" />
+              <motion.span animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }} className="block w-6 h-0.5 bg-white" />
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}
@@ -120,17 +116,17 @@ export default function Navbar() {
                     key={item.label}
                     onClick={() => scrollTo(item.chapter)}
                     className={`text-sm ${
-                      chapter === item.chapter ? "text-cream" : "text-cream/50"
-                    } hover:text-cream transition-colors text-left`}
+                      chapter === item.chapter ? "text-white" : "text-white/50"
+                    } hover:text-white transition-colors text-left`}
                   >
                     {item.label}
                   </button>
                 ))}
                 <button
                   onClick={() => scrollTo(6)}
-                  className="text-sm px-4 py-2 border border-cream/30 rounded-xl text-cream hover:bg-cream/5 w-fit transition-colors duration-500"
+                  className="text-sm bg-white text-black px-5 py-2 rounded-full w-fit hover:bg-white/90 transition-colors duration-300"
                 >
-                  Kontaktirajte nas
+                  Contact us
                 </button>
               </div>
             </motion.div>
@@ -156,7 +152,7 @@ export default function Navbar() {
                 className="absolute top-0 left-0 w-full rounded-full transition-colors duration-500 opacity-50"
                 style={{
                   height: `${sectionFill}%`,
-                  background: sectionFill > 0 ? "rgba(240,230,210,0.5)" : "transparent",
+                  background: sectionFill > 0 ? "rgba(255,255,255,0.5)" : "transparent",
                 }}
               />
             </div>

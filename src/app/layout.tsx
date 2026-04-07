@@ -13,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${GeistSans.variable} antialiased bg-onyx text-cream`}>
+    <html lang="en" className={`dark ${GeistSans.variable}`}>
+      <body className="antialiased bg-onyx text-cream">
         {children}
       </body>
     </html>

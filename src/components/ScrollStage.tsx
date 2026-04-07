@@ -152,9 +152,9 @@ export default function ScrollStage() {
 
         <ProgressBar containerRef={containerRef} currentChapter={currentChapter} />
 
-        <div className={`absolute bottom-0 left-0 right-0 z-30 border-t border-white/5 py-6 px-6 transition-opacity duration-500 ${currentChapter === 6 ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-cream/40">&copy; 2025 Desnis</p>
+        <div className={`absolute bottom-0 left-0 right-0 z-30 border-t border-white/5 py-6 px-[6vw] transition-opacity duration-500 ${currentChapter === 6 ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          <div className="flex items-center justify-between">
+            <p className="text-[13px] text-white/60">&copy; 2026 Desnis</p>
           </div>
         </div>
       </div>

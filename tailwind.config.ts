@@ -19,6 +19,7 @@ const config: Config = {
         "neon-purple": "#B44AFF",
       },
       fontFamily: {
+        sans: ["var(--font-geist-sans)", "sans-serif"],
         geist: ["var(--font-geist-sans)", "sans-serif"],
       },
     },
