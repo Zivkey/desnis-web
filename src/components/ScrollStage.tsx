@@ -113,7 +113,7 @@ export default function ScrollStage() {
   }, [currentChapter]);
 
   return (
-    <div ref={containerRef} className="relative" style={{ height: "2100vh" }}>
+    <div ref={containerRef} className="relative" style={{ height: "2100svh" }}>
       <div id="hero" className="absolute top-0" />
       <div id="seo" className="absolute top-[17%]" />
       <div id="design" className="absolute top-[31%]" />
@@ -122,7 +122,7 @@ export default function ScrollStage() {
       <div id="testimonials" className="absolute top-[74%]" />
       <div id="contact" className="absolute top-[98%]" />
 
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
         <div className="absolute inset-0 bg-onyx" />
         <div className="absolute inset-0 pointer-events-none">
           <video ref={bgVideoRef} className="absolute w-full h-full object-cover scale-150 blur-[100px] opacity-50 saturate-[1.8]" muted playsInline preload="auto" src="/videos/full.mp4" />
