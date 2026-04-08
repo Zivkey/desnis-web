@@ -1,8 +1,7 @@
 import { MotionValue, useTransform } from "framer-motion";
+import { useMemo } from "react";
 
 type Direction = "left" | "right" | "bottom" | "scale";
-
-const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
 
 /**
  * Scroll-driven motion style with enter and exit animations.
@@ -19,6 +18,7 @@ export function useScrollElement(
   exitStart: number = 0.7,
   exitEnd: number = 0.92
 ) {
+  const isMobile = useMemo(() => typeof window !== "undefined" && window.innerWidth < 640, []);
   const distance = direction === "bottom" ? 60 : 120;
 
   // Mobile: fade+slide at chapter edges so exit/enter are adjacent (no gap, no overlap)
