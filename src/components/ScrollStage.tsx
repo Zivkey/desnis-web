@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { useMotionValue } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -16,6 +16,12 @@ import ProgressBar from "@/components/ProgressBar";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
+}
+
+/** On mobile, immediately hide non-active chapters to prevent ghosting overlap.
+ *  On desktop, always show (opacity animation handles transitions). */
+function MobileHide({ active, children }: { active: boolean; children: React.ReactNode }) {
+  return <div className={`absolute inset-0 ${!active ? "max-sm:invisible" : ""}`}>{children}</div>;
 }
 
 export default function ScrollStage() {
@@ -141,13 +147,13 @@ export default function ScrollStage() {
         </div>
 
         <div className="absolute inset-x-0 top-0 h-[100svh] z-10">
-          {currentChapter <= 1 && <ChapterHero progress={cp0} active={currentChapter === 0} />}
-          {currentChapter >= 0 && currentChapter <= 2 && <ChapterSeo progress={cp1} active={currentChapter === 1} />}
-          {currentChapter >= 1 && currentChapter <= 3 && <ChapterDesign progress={cp2} active={currentChapter === 2} />}
-          {currentChapter >= 2 && currentChapter <= 4 && <ChapterDev progress={cp3} active={currentChapter === 3} />}
-          {currentChapter >= 3 && currentChapter <= 5 && <ChapterWork progress={cp4} active={currentChapter === 4} />}
-          {currentChapter >= 4 && currentChapter <= 6 && <ChapterTestimonials progress={cp5} active={currentChapter === 5} />}
-          {currentChapter >= 5 && <ChapterContact progress={cp6} active={currentChapter === 6} />}
+          {currentChapter <= 1 && <MobileHide active={currentChapter === 0}><ChapterHero progress={cp0} active={currentChapter === 0} /></MobileHide>}
+          {currentChapter >= 0 && currentChapter <= 2 && <MobileHide active={currentChapter === 1}><ChapterSeo progress={cp1} active={currentChapter === 1} /></MobileHide>}
+          {currentChapter >= 1 && currentChapter <= 3 && <MobileHide active={currentChapter === 2}><ChapterDesign progress={cp2} active={currentChapter === 2} /></MobileHide>}
+          {currentChapter >= 2 && currentChapter <= 4 && <MobileHide active={currentChapter === 3}><ChapterDev progress={cp3} active={currentChapter === 3} /></MobileHide>}
+          {currentChapter >= 3 && currentChapter <= 5 && <MobileHide active={currentChapter === 4}><ChapterWork progress={cp4} active={currentChapter === 4} /></MobileHide>}
+          {currentChapter >= 4 && currentChapter <= 6 && <MobileHide active={currentChapter === 5}><ChapterTestimonials progress={cp5} active={currentChapter === 5} /></MobileHide>}
+          {currentChapter >= 5 && <MobileHide active={currentChapter === 6}><ChapterContact progress={cp6} active={currentChapter === 6} /></MobileHide>}
         </div>
 
         <ProgressBar containerRef={containerRef} currentChapter={currentChapter} />
