@@ -2,6 +2,8 @@ import { MotionValue, useTransform } from "framer-motion";
 
 type Direction = "left" | "right" | "bottom" | "scale";
 
+const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+
 /**
  * Scroll-driven motion style with enter and exit animations.
  * `enter` = progress where element starts appearing
@@ -28,7 +30,7 @@ export function useScrollElement(
   const blur = useTransform(
     progress,
     [enter, full, exitStart, exitEnd],
-    [10, 0, 0, 10]
+    isMobile ? [0, 0, 0, 0] : [10, 0, 0, 10]
   );
 
   const enterX =
@@ -58,7 +60,7 @@ export function useScrollElement(
     [direction === "scale" ? 0.85 : 1, 1, 1, direction === "scale" ? 0.9 : 0.97]
   );
 
-  const filter = useTransform(blur, (v) => `blur(${v}px)`);
+  const filter = useTransform(blur, (v) => v === 0 ? "none" : `blur(${v}px)`);
 
   return { opacity, x, y, scale, filter };
 }

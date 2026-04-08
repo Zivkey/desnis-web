@@ -214,7 +214,7 @@ export default function ChapterContact({ progress, active }: Props) {
       </motion.form>
 
       {/* Mobile layout — compact form only */}
-      <div className="absolute inset-0 sm:hidden px-[6vw] pt-[8vh] pb-4 flex items-start">
+      <div className="absolute inset-0 sm:hidden px-[6vw] pt-[14vh] pb-4 flex items-start">
         <motion.form
           style={formStyle}
           onSubmit={(e) => e.preventDefault()}
