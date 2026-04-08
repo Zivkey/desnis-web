@@ -21,22 +21,22 @@ export function useScrollElement(
 ) {
   const distance = direction === "bottom" ? 60 : 120;
 
-  // On mobile: delay enter (start at 0 instead of negative) and speed up exit
-  // This prevents chapters from overlapping during transitions
-  const effectiveEnter = isMobile ? Math.max(enter, 0.02) : enter;
-  const effectiveFull = isMobile ? Math.max(full, 0.08) : full;
-  const mobileExitEnd = exitStart + (exitEnd - exitStart) * 0.25;
-  const effectiveExitEnd = isMobile ? mobileExitEnd : exitEnd;
+  // On mobile: near-instant cut transitions (tiny range for both enter and exit)
+  // This prevents any overlap between chapters in either scroll direction
+  const effectiveEnter = isMobile ? 0.01 : enter;
+  const effectiveFull = isMobile ? 0.03 : full;
+  const effectiveExitStart = isMobile ? exitStart : exitStart;
+  const effectiveExitEnd = isMobile ? exitStart + 0.02 : exitEnd;
 
   const opacity = useTransform(
     progress,
-    [effectiveEnter, effectiveFull, exitStart, effectiveExitEnd],
+    [effectiveEnter, effectiveFull, effectiveExitStart, effectiveExitEnd],
     [0, 1, 1, 0]
   );
 
   const blur = useTransform(
     progress,
-    [effectiveEnter, effectiveFull, exitStart, effectiveExitEnd],
+    [effectiveEnter, effectiveFull, effectiveExitStart, effectiveExitEnd],
     isMobile ? [0, 0, 0, 0] : [10, 0, 0, 10]
   );
 
@@ -47,8 +47,8 @@ export function useScrollElement(
 
   const x = useTransform(
     progress,
-    [effectiveEnter, effectiveFull, exitStart, effectiveExitEnd],
-    [enterX, 0, 0, exitX]
+    [effectiveEnter, effectiveFull, effectiveExitStart, effectiveExitEnd],
+    isMobile ? [0, 0, 0, 0] : [enterX, 0, 0, exitX]
   );
 
   const enterY =
@@ -57,13 +57,13 @@ export function useScrollElement(
 
   const y = useTransform(
     progress,
-    [effectiveEnter, effectiveFull, exitStart, effectiveExitEnd],
-    [enterY, 0, 0, exitY]
+    [effectiveEnter, effectiveFull, effectiveExitStart, effectiveExitEnd],
+    isMobile ? [0, 0, 0, 0] : [enterY, 0, 0, exitY]
   );
 
   const scale = useTransform(
     progress,
-    [effectiveEnter, effectiveFull, exitStart, effectiveExitEnd],
+    [effectiveEnter, effectiveFull, effectiveExitStart, effectiveExitEnd],
     [direction === "scale" ? 0.85 : 1, 1, 1, direction === "scale" ? 0.9 : 0.97]
   );
 
