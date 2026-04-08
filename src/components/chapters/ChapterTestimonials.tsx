@@ -105,7 +105,7 @@ export default function ChapterTestimonials({ progress, active }: Props) {
       </motion.div>
 
       {/* Portrait card */}
-      <motion.div style={cardStyle} className="absolute left-[6vw] top-[38%] bottom-[10%] w-[min(320px,38vw)]">
+      <motion.div style={cardStyle} className="absolute left-[6vw] top-[38%] sm:top-[38%] bottom-[10%] w-[min(88vw,320px)] sm:w-[min(320px,38vw)]">
 
         <div
           className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 cursor-pointer"

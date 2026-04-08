@@ -109,8 +109,9 @@ export default function ChapterContact({ progress, active }: Props) {
       className="absolute inset-0"
       style={{ pointerEvents: active ? "auto" : "none" }}
     >
+      {/* Desktop layout */}
       {/* Header */}
-      <motion.div className="absolute left-[6vw] top-[13%]" style={headerStyle}>
+      <motion.div className="absolute left-[6vw] top-[13%] hidden sm:block" style={headerStyle}>
         <p className="text-[13px] text-white/40 tracking-[0.08em] mb-3">Contact</p>
         <h2 className="text-[clamp(2.5rem,5vw,5rem)] font-normal leading-[0.95] tracking-[-0.04em] text-white">
           Get in<br />touch
@@ -121,14 +122,14 @@ export default function ChapterContact({ progress, active }: Props) {
         </div>
       </motion.div>
 
-      {/* Form card — motion.form so backdrop-blur is on the same compositing layer as the animation */}
+      {/* Desktop form */}
       <motion.form
         ref={formRef}
         style={formStyle}
         onSubmit={(e) => e.preventDefault()}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setSpotlight((s) => ({ ...s, opacity: 0 }))}
-        className="absolute right-[6vw] top-[13%] w-[min(520px,44vw)] rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.07] border border-white/10 transition-[border-color] duration-300 hover:border-white/25 flex flex-col"
+        className="absolute right-[6vw] top-[13%] w-[min(520px,44vw)] rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.07] border border-white/10 transition-[border-color] duration-300 hover:border-white/25 hidden sm:flex flex-col"
       >
           {/* Spotlight */}
           <div
@@ -211,6 +212,97 @@ export default function ChapterContact({ progress, active }: Props) {
             </button>
           </div>
       </motion.form>
+
+      {/* Mobile layout — stacked: header on top, form below */}
+      <div className="absolute inset-0 sm:hidden overflow-y-auto px-[6vw] pt-[10vh] pb-8 flex flex-col gap-6">
+        <motion.div style={headerStyle}>
+          <p className="text-[13px] text-white/40 tracking-[0.08em] mb-3">Contact</p>
+          <h2 className="text-[clamp(2rem,8vw,3rem)] font-normal leading-[0.95] tracking-[-0.04em] text-white">
+            Get in touch
+          </h2>
+          <div className="flex items-center gap-2 mt-4">
+            <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-[13px] text-white/40">Available · We reply within 24h</span>
+          </div>
+        </motion.div>
+
+        <motion.form
+          style={formStyle}
+          onSubmit={(e) => e.preventDefault()}
+          className="w-full rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.07] border border-white/10 flex flex-col"
+        >
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none z-0" />
+
+          <div className="relative z-10 px-5 py-6 flex flex-col gap-5">
+            <div className="flex flex-col gap-1">
+              <label className="text-[11px] text-white/50 uppercase tracking-[0.08em]">Name</label>
+              <input
+                type="text"
+                placeholder="Your name"
+                className="w-full bg-white/[0.05] border border-white/10 rounded-xl px-3 py-2.5 text-[13px] text-white placeholder:text-white/40 focus:outline-none focus:border-white/25 transition-colors"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-[11px] text-white/50 uppercase tracking-[0.08em]">Email</label>
+              <input
+                type="email"
+                placeholder="email@example.com"
+                className="w-full bg-white/[0.05] border border-white/10 rounded-xl px-3 py-2.5 text-[13px] text-white placeholder:text-white/40 focus:outline-none focus:border-white/25 transition-colors"
+              />
+            </div>
+
+            <div className="flex gap-4">
+              <Dropdown
+                label="Service"
+                options={["Branding", "Web Design", "Development"]}
+                value={service}
+                onChange={setService}
+              />
+              <Dropdown
+                label="Pages"
+                options={["1", "2 - 5", "5 - 10", "10 - 20", "20+"]}
+                value={pages}
+                onChange={setPages}
+              />
+            </div>
+
+            <div className="flex gap-4">
+              <Dropdown
+                label="CMS"
+                options={["No CMS", "Simple CMS", "Advanced CMS"]}
+                value={cms}
+                onChange={setCms}
+              />
+              <Dropdown
+                label="Animations"
+                options={["Basic", "Advanced", "Premium"]}
+                value={animations}
+                onChange={setAnimations}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-[11px] text-white/50 uppercase tracking-[0.08em]">Message</label>
+              <textarea
+                placeholder="Tell us about your project..."
+                rows={3}
+                className="w-full bg-white/[0.05] border border-white/10 rounded-xl px-3 py-2 text-[13px] text-white placeholder:text-white/40 focus:outline-none focus:border-white/25 transition-colors resize-none"
+              />
+            </div>
+          </div>
+
+          <div className="relative z-10 px-5 pb-6 pt-4 border-t border-white/[0.06]">
+            <button
+              type="submit"
+              className="w-full inline-flex items-center justify-center gap-2 bg-white text-black text-[13px] font-normal px-8 py-3 rounded-full hover:bg-white/90 transition-colors"
+            >
+              Send message
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </motion.form>
+      </div>
     </div>
   );
 }

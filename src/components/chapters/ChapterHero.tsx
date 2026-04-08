@@ -22,7 +22,7 @@ export default function ChapterHero({ progress, active }: Props) {
 
   return (
     <div
-      className={`absolute inset-0 flex flex-col justify-between pl-[6vw] pt-[22vh] pb-[14vh] ${
+      className={`absolute inset-0 flex flex-col justify-between pl-[6vw] pt-[12vh] md:pt-[22vh] pb-[14vh] ${
         active ? "pointer-events-auto" : "pointer-events-none"
       }`}
     >
