@@ -21,13 +21,14 @@ export function useScrollElement(
 ) {
   const distance = direction === "bottom" ? 60 : 120;
 
-  // On mobile, shrink the exit window so elements disappear faster
-  const mobileExitEnd = exitStart + (exitEnd - exitStart) * 0.4;
+  // On mobile, shrink both enter and exit windows for snappier transitions (no overlap)
+  const mobileEnter = isMobile ? full - (full - enter) * 0.3 : enter;
+  const mobileExitEnd = exitStart + (exitEnd - exitStart) * 0.3;
   const effectiveExitEnd = isMobile ? mobileExitEnd : exitEnd;
 
   const opacity = useTransform(
     progress,
-    [enter, full, exitStart, effectiveExitEnd],
+    [mobileEnter, full, exitStart, effectiveExitEnd],
     [0, 1, 1, 0]
   );
 
