@@ -18,10 +18,13 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/** On mobile, immediately hide non-active chapters to prevent ghosting overlap.
- *  On desktop, always show (opacity animation handles transitions). */
+/** On mobile (<640px), hide non-active chapters instantly.
+ *  On desktop, render as `display:contents` so it doesn't affect layout/events. */
 function MobileHide({ active, children }: { active: boolean; children: React.ReactNode }) {
-  return <div className={`absolute inset-0 ${!active ? "max-sm:invisible" : ""}`}>{children}</div>;
+  const isMobile = useMemo(() => typeof window !== "undefined" && window.innerWidth < 640, []);
+  if (!isMobile) return <>{children}</>;
+  if (!active) return null;
+  return <>{children}</>;
 }
 
 export default function ScrollStage() {

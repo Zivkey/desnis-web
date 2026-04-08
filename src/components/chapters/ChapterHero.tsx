@@ -2,6 +2,7 @@
 
 import { MotionValue, useTransform } from "framer-motion";
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 
 interface Props {
   progress: MotionValue<number>;
@@ -9,16 +10,18 @@ interface Props {
 }
 
 export default function ChapterHero({ progress, active }: Props) {
+  const isMobile = useMemo(() => typeof window !== "undefined" && window.innerWidth < 640, []);
+
   const titleOpacity = useTransform(progress, [0, 0.5, 0.85], [1, 1, 0]);
   const titleScale = useTransform(progress, [0, 0.5, 0.85], [1, 1, 0.9]);
   const titleY = useTransform(progress, [0, 0.5, 0.85], [0, 0, -30]);
-  const titleBlur = useTransform(progress, [0, 0.5, 0.85], [0, 0, 10]);
-  const titleFilter = useTransform(titleBlur, (v) => `blur(${v}px)`);
+  const titleBlur = useTransform(progress, [0, 0.5, 0.85], isMobile ? [0, 0, 0] : [0, 0, 10]);
+  const titleFilter = useTransform(titleBlur, (v) => v === 0 ? "none" : `blur(${v}px)`);
 
   const subOpacity = useTransform(progress, [0, 0.4, 0.75], [1, 1, 0]);
   const subY = useTransform(progress, [0, 0.4, 0.75], [0, 0, -20]);
-  const subBlur = useTransform(progress, [0, 0.4, 0.75], [0, 0, 10]);
-  const subFilter = useTransform(subBlur, (v) => `blur(${v}px)`);
+  const subBlur = useTransform(progress, [0, 0.4, 0.75], isMobile ? [0, 0, 0] : [0, 0, 10]);
+  const subFilter = useTransform(subBlur, (v) => v === 0 ? "none" : `blur(${v}px)`);
 
   return (
     <div
