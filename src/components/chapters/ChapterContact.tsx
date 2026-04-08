@@ -213,19 +213,8 @@ export default function ChapterContact({ progress, active }: Props) {
           </div>
       </motion.form>
 
-      {/* Mobile layout — stacked: header on top, form below */}
-      <div className="absolute inset-0 sm:hidden overflow-y-auto px-[6vw] pt-[6vh] pb-8 flex flex-col gap-6">
-        <motion.div style={headerStyle}>
-          <p className="text-[13px] text-white/40 tracking-[0.08em] mb-3">Contact</p>
-          <h2 className="text-[clamp(2rem,8vw,3rem)] font-normal leading-[0.95] tracking-[-0.04em] text-white">
-            Get in touch
-          </h2>
-          <div className="flex items-center gap-2 mt-4">
-            <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-[13px] text-white/40">Available · We reply within 24h</span>
-          </div>
-        </motion.div>
-
+      {/* Mobile layout — form only, no header */}
+      <div className="absolute inset-0 sm:hidden overflow-y-auto px-[6vw] pt-[10vh] pb-8 flex flex-col">
         <motion.form
           style={formStyle}
           onSubmit={(e) => e.preventDefault()}

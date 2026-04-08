@@ -34,7 +34,12 @@ export default function Navbar() {
     const target = ch.scrollRange[0] * scrollHeight;
     setIsOpen(false);
     requestAnimationFrame(() => {
-      window.scrollTo(0, target);
+      const lenis = (window as any).__lenis;
+      if (lenis) {
+        lenis.scrollTo(target, { immediate: false });
+      } else {
+        window.scrollTo(0, target);
+      }
     });
   };
 
@@ -44,7 +49,7 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="fixed top-0 left-0 right-0 z-50 px-[6vw] pt-[3vh] pb-4"
+        className={`fixed top-0 left-0 right-0 z-50 px-[6vw] pt-[3vh] pb-4 transition-colors duration-300 ${isOpen ? "bg-black/80 backdrop-blur-2xl" : ""}`}
       >
         <div className="w-full grid grid-cols-[1fr_auto_1fr] items-center">
 
@@ -110,12 +115,12 @@ export default function Navbar() {
               transition={{ duration: 0.3 }}
               className="md:hidden overflow-hidden"
             >
-              <div className="flex flex-col gap-4 pt-6 pb-4">
+              <div className="flex flex-col gap-1 pt-6 pb-4">
                 {navItems.map((item) => (
                   <button
                     key={item.label}
                     onClick={() => scrollTo(item.chapter)}
-                    className={`text-sm ${
+                    className={`text-[18px] font-normal tracking-[-0.02em] py-3 ${
                       chapter === item.chapter ? "text-white" : "text-white/50"
                     } hover:text-white transition-colors text-left`}
                   >
@@ -124,7 +129,7 @@ export default function Navbar() {
                 ))}
                 <button
                   onClick={() => scrollTo(6)}
-                  className="text-sm bg-white text-black px-5 py-2 rounded-full w-fit hover:bg-white/90 transition-colors duration-300"
+                  className="mt-4 text-[15px] bg-white text-black px-7 py-3 rounded-full w-fit hover:bg-white/90 transition-colors duration-300"
                 >
                   Contact us
                 </button>

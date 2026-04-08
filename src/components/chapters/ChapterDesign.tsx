@@ -168,7 +168,7 @@ export default function ChapterDesign({ progress, active }: Props) {
       </div>
 
       {/* Mobile Swiper */}
-      <div className="absolute bottom-[12%] left-0 w-full px-[6vw] sm:hidden">
+      <div className="absolute bottom-[4%] left-0 w-full px-[6vw] sm:hidden">
         <MobileCardSwiper items={projects} cardStyle={mobileCardStyle} />
       </div>
     </div>

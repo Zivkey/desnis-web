@@ -204,7 +204,7 @@ export default function ChapterSeo({ progress, active }: Props) {
       </div>
 
       {/* Mobile Swiper */}
-      <div className="absolute bottom-[12%] left-0 w-full px-[6vw] sm:hidden">
+      <div className="absolute bottom-[4%] left-0 w-full px-[6vw] sm:hidden">
         <MobileCardSwiper features={features} cardStyle={mobileCardStyle} />
       </div>
     </div>

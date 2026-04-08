@@ -29,7 +29,7 @@ const row2Cards = [
 function FlipCard({ card }: { card: typeof row1Cards[0] }) {
   const initials = card.name.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
   return (
-    <div className="flip-card flex-shrink-0 w-[286px] h-[416px]">
+    <div className="flip-card flex-shrink-0 w-[200px] h-[290px] sm:w-[286px] sm:h-[416px]">
       <div className="flip-inner">
         {/* Front */}
         <div className={`flip-front rounded-2xl bg-gradient-to-br ${card.bg} flex items-end p-5`}>
