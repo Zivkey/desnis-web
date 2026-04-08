@@ -32,7 +32,7 @@ function GlassCard({ project, style }: { project: typeof projects[0]; style: Mot
       style={style}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.07] border border-white/10 p-6 sm:p-8 transition-[border-color] duration-300 hover:border-white/25"
+      className="relative rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.07] border border-white/10 p-5 sm:p-6 transition-[border-color] duration-300 hover:border-white/25"
     >
       <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-2xl"
@@ -44,7 +44,7 @@ function GlassCard({ project, style }: { project: typeof projects[0]; style: Mot
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
 
       <h3 className="text-[26px] font-normal tracking-[-0.03em] text-white mb-2 relative z-10">{project.title}</h3>
-      <p className="text-[14px] text-white/50 leading-relaxed mb-6 line-clamp-1 relative z-10">{project.description}</p>
+      <p className="text-[14px] text-white/50 leading-relaxed mb-4 line-clamp-1 relative z-10">{project.description}</p>
       <div className="flex flex-wrap gap-2 relative z-10">
         {project.tags.map((tag) => (
           <span key={tag} className="text-[12px] px-3 py-1 rounded-full border border-white/10 text-white/50 bg-white/5">
