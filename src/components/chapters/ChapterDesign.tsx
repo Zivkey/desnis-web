@@ -1,6 +1,6 @@
 "use client";
 
-import { MotionValue, motion } from "framer-motion";
+import { MotionStyle, MotionValue, motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { useScrollElement } from "../useScrollElement";
 
@@ -12,7 +12,7 @@ const projects = [
   { title: "UI/UX", description: "Intuitive interfaces focused on the user experience.", tags: ["Research", "Wireframes", "Testing"] },
 ];
 
-function GlassCard({ project, style }: { project: typeof projects[0]; style: React.CSSProperties }) {
+function GlassCard({ project, style }: { project: typeof projects[0]; style: MotionStyle }) {
   const ref = useRef<HTMLDivElement>(null);
   const [spotlight, setSpotlight] = useState({ x: 50, y: 50, opacity: 0 });
 
@@ -68,7 +68,7 @@ export default function ChapterDesign({ progress, active }: Props) {
 
       {/* Header — right */}
       <motion.div className="absolute right-[6vw] top-[13%] text-right" style={headerStyle}>
-        <p className="text-[13px] text-white/40 tracking-[0.08em] uppercase mb-3">Design</p>
+        <p className="text-[13px] text-white/40 tracking-[0.08em] mb-3">Design</p>
         <h2 className="text-[clamp(2.5rem,5vw,5rem)] font-normal leading-[0.95] tracking-[-0.04em] text-white">
           Creative<br />solutions
         </h2>

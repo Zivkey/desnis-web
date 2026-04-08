@@ -154,7 +154,7 @@ export default function ScrollStage() {
 
         <div className={`absolute bottom-0 left-0 right-0 z-30 border-t border-white/5 py-6 px-[6vw] transition-opacity duration-500 ${currentChapter === 6 ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
           <div className="flex items-center justify-between">
-            <p className="text-[13px] text-white/60">&copy; 2026 Desnis</p>
+            <p className="text-[13px] text-white/60">&copy; 2020 Desnis</p>
           </div>
         </div>
       </div>

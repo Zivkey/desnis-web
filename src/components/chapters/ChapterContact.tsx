@@ -111,7 +111,7 @@ export default function ChapterContact({ progress, active }: Props) {
     >
       {/* Header */}
       <motion.div className="absolute left-[6vw] top-[13%]" style={headerStyle}>
-        <p className="text-[13px] text-white/40 tracking-[0.08em] uppercase mb-3">Contact</p>
+        <p className="text-[13px] text-white/40 tracking-[0.08em] mb-3">Contact</p>
         <h2 className="text-[clamp(2.5rem,5vw,5rem)] font-normal leading-[0.95] tracking-[-0.04em] text-white">
           Get in<br />touch
         </h2>

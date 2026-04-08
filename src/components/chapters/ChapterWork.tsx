@@ -80,7 +80,7 @@ export default function ChapterWork({ progress, active }: Props) {
 
       {/* Header */}
       <motion.div className="absolute left-0 right-0 top-[18%] flex flex-col items-center text-center" style={headerStyle}>
-        <p className="text-[13px] text-white/40 tracking-[0.08em] uppercase mb-3">Portfolio</p>
+        <p className="text-[13px] text-white/40 tracking-[0.08em] mb-3">Portfolio</p>
         <h2 className="text-[clamp(2.5rem,5vw,5rem)] font-normal leading-[0.95] tracking-[-0.04em] text-white mb-6">
           Our clients
         </h2>

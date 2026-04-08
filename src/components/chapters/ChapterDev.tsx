@@ -1,6 +1,6 @@
 "use client";
 
-import { MotionValue, motion } from "framer-motion";
+import { MotionStyle, MotionValue, motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { useScrollElement } from "../useScrollElement";
 
@@ -12,7 +12,7 @@ const stack = [
   { title: "Deployment", description: "From code to production — fast and reliable.", tags: ["Vercel", "CI/CD", "Performance"] },
 ];
 
-function GlassCard({ item, style }: { item: typeof stack[0]; style: React.CSSProperties }) {
+function GlassCard({ item, style }: { item: typeof stack[0]; style: MotionStyle }) {
   const ref = useRef<HTMLDivElement>(null);
   const [spotlight, setSpotlight] = useState({ x: 50, y: 50, opacity: 0 });
 
@@ -68,7 +68,7 @@ export default function ChapterDev({ progress, active }: Props) {
 
       {/* Header */}
       <motion.div className="absolute left-[6vw] top-[13%]" style={headerStyle}>
-        <p className="text-[13px] text-white/40 tracking-[0.08em] uppercase mb-3">Development</p>
+        <p className="text-[13px] text-white/40 tracking-[0.08em] mb-3">Development</p>
         <h2 className="text-[clamp(2.5rem,5vw,5rem)] font-normal leading-[0.95] tracking-[-0.04em] text-white">
           Code<br />that works
         </h2>

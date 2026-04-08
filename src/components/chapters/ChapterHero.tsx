@@ -30,7 +30,7 @@ export default function ChapterHero({ progress, active }: Props) {
       <div className="text-left max-w-2xl">
         <motion.p
           style={{ opacity: subOpacity, y: subY, filter: subFilter }}
-          className="mb-3 text-[13px] font-normal text-white/40 tracking-[0.08em] uppercase"
+          className="mb-3 text-[13px] font-normal text-white/40 tracking-[0.08em]"
         >
           est 2026
         </motion.p>
