@@ -213,8 +213,8 @@ export default function ChapterContact({ progress, active }: Props) {
           </div>
       </motion.form>
 
-      {/* Mobile layout — form only, no header */}
-      <div className="absolute inset-0 sm:hidden overflow-y-auto px-[6vw] pt-[10vh] pb-8 flex flex-col">
+      {/* Mobile layout — compact form only */}
+      <div className="absolute inset-0 sm:hidden px-[6vw] pt-[8vh] pb-4 flex items-start">
         <motion.form
           style={formStyle}
           onSubmit={(e) => e.preventDefault()}
@@ -222,26 +222,26 @@ export default function ChapterContact({ progress, active }: Props) {
         >
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none z-0" />
 
-          <div className="relative z-10 px-5 py-6 flex flex-col gap-5">
+          <div className="relative z-10 px-4 py-4 flex flex-col gap-3">
             <div className="flex flex-col gap-1">
-              <label className="text-[11px] text-white/50 uppercase tracking-[0.08em]">Name</label>
+              <label className="text-[10px] text-white/50 uppercase tracking-[0.08em]">Name</label>
               <input
                 type="text"
                 placeholder="Your name"
-                className="w-full bg-white/[0.05] border border-white/10 rounded-xl px-3 py-2.5 text-[13px] text-white placeholder:text-white/40 focus:outline-none focus:border-white/25 transition-colors"
+                className="w-full bg-white/[0.05] border border-white/10 rounded-lg px-3 py-2 text-[13px] text-white placeholder:text-white/40 focus:outline-none focus:border-white/25 transition-colors"
               />
             </div>
 
             <div className="flex flex-col gap-1">
-              <label className="text-[11px] text-white/50 uppercase tracking-[0.08em]">Email</label>
+              <label className="text-[10px] text-white/50 uppercase tracking-[0.08em]">Email</label>
               <input
                 type="email"
                 placeholder="email@example.com"
-                className="w-full bg-white/[0.05] border border-white/10 rounded-xl px-3 py-2.5 text-[13px] text-white placeholder:text-white/40 focus:outline-none focus:border-white/25 transition-colors"
+                className="w-full bg-white/[0.05] border border-white/10 rounded-lg px-3 py-2 text-[13px] text-white placeholder:text-white/40 focus:outline-none focus:border-white/25 transition-colors"
               />
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <Dropdown
                 label="Service"
                 options={["Branding", "Web Design", "Development"]}
@@ -256,7 +256,7 @@ export default function ChapterContact({ progress, active }: Props) {
               />
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <Dropdown
                 label="CMS"
                 options={["No CMS", "Simple CMS", "Advanced CMS"]}
@@ -272,19 +272,19 @@ export default function ChapterContact({ progress, active }: Props) {
             </div>
 
             <div className="flex flex-col gap-1">
-              <label className="text-[11px] text-white/50 uppercase tracking-[0.08em]">Message</label>
+              <label className="text-[10px] text-white/50 uppercase tracking-[0.08em]">Message</label>
               <textarea
                 placeholder="Tell us about your project..."
-                rows={3}
-                className="w-full bg-white/[0.05] border border-white/10 rounded-xl px-3 py-2 text-[13px] text-white placeholder:text-white/40 focus:outline-none focus:border-white/25 transition-colors resize-none"
+                rows={2}
+                className="w-full bg-white/[0.05] border border-white/10 rounded-lg px-3 py-2 text-[13px] text-white placeholder:text-white/40 focus:outline-none focus:border-white/25 transition-colors resize-none"
               />
             </div>
           </div>
 
-          <div className="relative z-10 px-5 pb-6 pt-4 border-t border-white/[0.06]">
+          <div className="relative z-10 px-4 pb-4 pt-3 border-t border-white/[0.06]">
             <button
               type="submit"
-              className="w-full inline-flex items-center justify-center gap-2 bg-white text-black text-[13px] font-normal px-8 py-3 rounded-full hover:bg-white/90 transition-colors"
+              className="w-full inline-flex items-center justify-center gap-2 bg-white text-black text-[13px] font-normal px-6 py-2.5 rounded-full hover:bg-white/90 transition-colors"
             >
               Send message
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
