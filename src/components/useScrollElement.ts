@@ -21,15 +21,19 @@ export function useScrollElement(
 ) {
   const distance = direction === "bottom" ? 60 : 120;
 
+  // On mobile, shrink the exit window so elements disappear faster
+  const mobileExitEnd = exitStart + (exitEnd - exitStart) * 0.4;
+  const effectiveExitEnd = isMobile ? mobileExitEnd : exitEnd;
+
   const opacity = useTransform(
     progress,
-    [enter, full, exitStart, exitEnd],
+    [enter, full, exitStart, effectiveExitEnd],
     [0, 1, 1, 0]
   );
 
   const blur = useTransform(
     progress,
-    [enter, full, exitStart, exitEnd],
+    [enter, full, exitStart, effectiveExitEnd],
     isMobile ? [0, 0, 0, 0] : [10, 0, 0, 10]
   );
 
@@ -40,7 +44,7 @@ export function useScrollElement(
 
   const x = useTransform(
     progress,
-    [enter, full, exitStart, exitEnd],
+    [enter, full, exitStart, effectiveExitEnd],
     [enterX, 0, 0, exitX]
   );
 
@@ -50,13 +54,13 @@ export function useScrollElement(
 
   const y = useTransform(
     progress,
-    [enter, full, exitStart, exitEnd],
+    [enter, full, exitStart, effectiveExitEnd],
     [enterY, 0, 0, exitY]
   );
 
   const scale = useTransform(
     progress,
-    [enter, full, exitStart, exitEnd],
+    [enter, full, exitStart, effectiveExitEnd],
     [direction === "scale" ? 0.85 : 1, 1, 1, direction === "scale" ? 0.9 : 0.97]
   );
 

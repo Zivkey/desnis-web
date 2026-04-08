@@ -113,7 +113,7 @@ export default function ScrollStage() {
   }, [currentChapter]);
 
   return (
-    <div ref={containerRef} className="relative" style={{ height: "2100svh" }}>
+    <div ref={containerRef} className="relative" style={{ height: "2100dvh" }}>
       <div id="hero" className="absolute top-0" />
       <div id="seo" className="absolute top-[17%]" />
       <div id="design" className="absolute top-[31%]" />
@@ -122,7 +122,7 @@ export default function ScrollStage() {
       <div id="testimonials" className="absolute top-[74%]" />
       <div id="contact" className="absolute top-[98%]" />
 
-      <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
+      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
         <div className="absolute inset-0 bg-onyx" />
         <div className="absolute inset-0 pointer-events-none">
           <video ref={bgVideoRef} className="absolute w-full h-full object-cover scale-150 blur-[100px] opacity-50 saturate-[1.8]" muted playsInline preload="auto" src="/videos/full.mp4" />
@@ -140,7 +140,7 @@ export default function ScrollStage() {
           </div>
         </div>
 
-        <div className="absolute inset-0 z-10">
+        <div className="absolute inset-x-0 top-0 h-[100svh] z-10">
           {currentChapter <= 1 && <ChapterHero progress={cp0} active={currentChapter === 0} />}
           {currentChapter >= 0 && currentChapter <= 2 && <ChapterSeo progress={cp1} active={currentChapter === 1} />}
           {currentChapter >= 1 && currentChapter <= 3 && <ChapterDesign progress={cp2} active={currentChapter === 2} />}
