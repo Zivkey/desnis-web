@@ -21,20 +21,22 @@ export function useScrollElement(
 ) {
   const distance = direction === "bottom" ? 60 : 120;
 
-  // On mobile, shrink both enter and exit windows for snappier transitions (no overlap)
-  const mobileEnter = isMobile ? full - (full - enter) * 0.3 : enter;
-  const mobileExitEnd = exitStart + (exitEnd - exitStart) * 0.3;
+  // On mobile: delay enter (start at 0 instead of negative) and speed up exit
+  // This prevents chapters from overlapping during transitions
+  const effectiveEnter = isMobile ? Math.max(enter, 0.02) : enter;
+  const effectiveFull = isMobile ? Math.max(full, 0.08) : full;
+  const mobileExitEnd = exitStart + (exitEnd - exitStart) * 0.25;
   const effectiveExitEnd = isMobile ? mobileExitEnd : exitEnd;
 
   const opacity = useTransform(
     progress,
-    [mobileEnter, full, exitStart, effectiveExitEnd],
+    [effectiveEnter, effectiveFull, exitStart, effectiveExitEnd],
     [0, 1, 1, 0]
   );
 
   const blur = useTransform(
     progress,
-    [enter, full, exitStart, effectiveExitEnd],
+    [effectiveEnter, effectiveFull, exitStart, effectiveExitEnd],
     isMobile ? [0, 0, 0, 0] : [10, 0, 0, 10]
   );
 
@@ -45,7 +47,7 @@ export function useScrollElement(
 
   const x = useTransform(
     progress,
-    [enter, full, exitStart, effectiveExitEnd],
+    [effectiveEnter, effectiveFull, exitStart, effectiveExitEnd],
     [enterX, 0, 0, exitX]
   );
 
@@ -55,13 +57,13 @@ export function useScrollElement(
 
   const y = useTransform(
     progress,
-    [enter, full, exitStart, effectiveExitEnd],
+    [effectiveEnter, effectiveFull, exitStart, effectiveExitEnd],
     [enterY, 0, 0, exitY]
   );
 
   const scale = useTransform(
     progress,
-    [enter, full, exitStart, effectiveExitEnd],
+    [effectiveEnter, effectiveFull, exitStart, effectiveExitEnd],
     [direction === "scale" ? 0.85 : 1, 1, 1, direction === "scale" ? 0.9 : 0.97]
   );
 
