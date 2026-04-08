@@ -214,7 +214,7 @@ export default function ChapterContact({ progress, active }: Props) {
       </motion.form>
 
       {/* Mobile layout — stacked: header on top, form below */}
-      <div className="absolute inset-0 sm:hidden overflow-y-auto px-[6vw] pt-[10vh] pb-8 flex flex-col gap-6">
+      <div className="absolute inset-0 sm:hidden overflow-y-auto px-[6vw] pt-[6vh] pb-8 flex flex-col gap-6">
         <motion.div style={headerStyle}>
           <p className="text-[13px] text-white/40 tracking-[0.08em] mb-3">Contact</p>
           <h2 className="text-[clamp(2rem,8vw,3rem)] font-normal leading-[0.95] tracking-[-0.04em] text-white">
