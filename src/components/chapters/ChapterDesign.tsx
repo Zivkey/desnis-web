@@ -44,7 +44,7 @@ function GlassCard({ project, style }: { project: typeof projects[0]; style: Mot
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
 
       <h3 className="text-[26px] font-normal tracking-[-0.03em] text-white mb-2 relative z-10">{project.title}</h3>
-      <p className="text-[14px] text-white/50 leading-relaxed mb-3 relative z-10">{project.description}</p>
+      <p className="text-[14px] text-white/50 leading-relaxed mb-6 line-clamp-1 relative z-10">{project.description}</p>
       <div className="flex flex-wrap gap-2 relative z-10">
         {project.tags.map((tag) => (
           <span key={tag} className="text-[12px] px-3 py-1 rounded-full border border-white/10 text-white/50 bg-white/5">
