@@ -21,22 +21,15 @@ export function useScrollElement(
 ) {
   const distance = direction === "bottom" ? 60 : 120;
 
-  // On mobile: near-instant cut transitions (tiny range for both enter and exit)
-  // This prevents any overlap between chapters in either scroll direction
-  const effectiveEnter = isMobile ? 0.01 : enter;
-  const effectiveFull = isMobile ? 0.03 : full;
-  const effectiveExitStart = isMobile ? exitStart : exitStart;
-  const effectiveExitEnd = isMobile ? exitStart + 0.02 : exitEnd;
-
-  const opacity = useTransform(
-    progress,
-    [effectiveEnter, effectiveFull, effectiveExitStart, effectiveExitEnd],
-    [0, 1, 1, 0]
-  );
+  // Desktop: smooth gradual transitions with blur
+  // Mobile: hard cut — element is either fully visible or fully hidden
+  const opacity = isMobile
+    ? useTransform(progress, (v: number) => (v > 0.02 && v < exitStart) ? 1 : 0)
+    : useTransform(progress, [enter, full, exitStart, exitEnd], [0, 1, 1, 0]);
 
   const blur = useTransform(
     progress,
-    [effectiveEnter, effectiveFull, effectiveExitStart, effectiveExitEnd],
+    [enter, full, exitStart, exitEnd],
     isMobile ? [0, 0, 0, 0] : [10, 0, 0, 10]
   );
 
@@ -47,7 +40,7 @@ export function useScrollElement(
 
   const x = useTransform(
     progress,
-    [effectiveEnter, effectiveFull, effectiveExitStart, effectiveExitEnd],
+    [enter, full, exitStart, exitEnd],
     isMobile ? [0, 0, 0, 0] : [enterX, 0, 0, exitX]
   );
 
@@ -57,14 +50,14 @@ export function useScrollElement(
 
   const y = useTransform(
     progress,
-    [effectiveEnter, effectiveFull, effectiveExitStart, effectiveExitEnd],
+    [enter, full, exitStart, exitEnd],
     isMobile ? [0, 0, 0, 0] : [enterY, 0, 0, exitY]
   );
 
   const scale = useTransform(
     progress,
-    [effectiveEnter, effectiveFull, effectiveExitStart, effectiveExitEnd],
-    [direction === "scale" ? 0.85 : 1, 1, 1, direction === "scale" ? 0.9 : 0.97]
+    [enter, full, exitStart, exitEnd],
+    isMobile ? [1, 1, 1, 1] : [direction === "scale" ? 0.85 : 1, 1, 1, direction === "scale" ? 0.9 : 0.97]
   );
 
   const filter = useTransform(blur, (v) => v === 0 ? "none" : `blur(${v}px)`);
