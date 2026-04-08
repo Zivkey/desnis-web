@@ -109,8 +109,8 @@ export default function ChapterTestimonials({ progress, active }: Props) {
 
         <div
           className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 cursor-pointer"
-          onMouseEnter={() => { setHovered(true); if (videoRef.current) { videoRef.current.currentTime = 0; videoRef.current.play(); } }}
-          onMouseLeave={() => { setHovered(false); if (videoRef.current) { videoRef.current.pause(); videoRef.current.currentTime = 0; } }}
+          onMouseEnter={() => { if (window.innerWidth >= 640) { setHovered(true); if (videoRef.current) { videoRef.current.currentTime = 0; videoRef.current.play(); } } }}
+          onMouseLeave={() => { if (window.innerWidth >= 640) { setHovered(false); if (videoRef.current) { videoRef.current.pause(); videoRef.current.currentTime = 0; } } }}
           onClick={openFullscreen}
         >
           <AnimatePresence custom={dir} initial={false}>
